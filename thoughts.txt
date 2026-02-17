@@ -1,0 +1,5 @@
+Windsurf
+    easy to use
+    moved at appropreate increments
+    easy and effective to correct
+    started in python
