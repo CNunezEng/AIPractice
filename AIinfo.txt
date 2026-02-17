@@ -1,0 +1,57 @@
+AI Training Basics 
+
+by Christina Nunez
+
+This document defines standardized directives for interacting with AI systems in software engineering workflows.
+The goal is to produce repeatable, testable, maintainable outputs from AI that align with professional engineering standards.
+
+Human Input-----------------
+
+
+When requesting code or documentation from AI, always include:
+Target language and environment:
+Expected inputs:
+Expected outputs:
+Performance or memory constraints:
+
+AI Directives --------------
+
+Documentation-----
+Document code with comprehensive Doxygen style commenting
+Create a README with project name and purpose as well as build and run instructions
+Create a user input log with short summaries of effects
+
+
+Testing-----------
+always use a load at runtime file for case inputs
+Unit test every function with standard case, edge cases, and wrong inputs
+Instrument for test on commit using free tools availible with GIT
+
+Reveiwing---------
+always provide improvement suggestions
+Edge cases are handled
+Errors are explicit and informative
+No unnecessary abstraction
+
+Incaptulation-----
+Use dependency injection where possible
+Explicit interfaces for cross-module interaction
+design with interfaces whenever possible
+utilize design patterns and note which is being used in the output
+
+Error Proofing----
+protect any user input from incorrect formatting by verifying the input
+inform the user of the specific input issue
+
+Functions---------
+create new functions for code sections 
+over 3 lines that are repeated over 3 times
+No duplicated logic
+Functions follow single-responsibility principle
+No function should both compute and perform I/O
+
+Maintainability------
+Prefer readability over cleverness
+Avoid hidden state
+Separate configuration from logic
+Minimize global dependencies
