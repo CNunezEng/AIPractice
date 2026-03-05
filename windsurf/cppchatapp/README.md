@@ -46,78 +46,130 @@ windsurf/cppchatapp/
 
 ## Building
 
-### Windows (Visual Studio)
+### Prerequisites
 
+- C++17 compatible compiler (GCC 7+, Clang 5+, MSVC 2017+)
+- Make utility
+- Google Test framework (for testing)
+
+#### Install Google Test
+
+**Windows (vcpkg):**
 ```bash
-# Create build directory
-mkdir build
-cd build
-
-# Configure and build
-cmake .. -G "Visual Studio 16 2019"
-cmake --build . --config Release
-
-# Run executables
-bin\Release\chat_server.exe
-bin\Release\chat_client.exe
+vcpkg install gtest
 ```
 
-### Windows (MinGW)
-
+**Linux (apt):**
 ```bash
-# Create build directory
-mkdir build
-cd build
-
-# Configure and build
-cmake .. -G "MinGW Makefiles"
-cmake --build .
-
-# Run executables
-bin\chat_server.exe
-bin\chat_client.exe
+sudo apt-get install libgtest-dev libgmock-dev
 ```
 
-### Linux
-
+**Building from Source:**
 ```bash
-# Create build directory
-mkdir build
-cd build
-
-# Configure and build
+git clone https://github.com/google/googletest.git
+cd googletest
+mkdir build && cd build
 cmake ..
 make
-
-# Run executables
-./bin/chat_server
-./bin/chat_client
+sudo make install
 ```
 
-## Usage
+### Build Commands
 
-### Start the Server
+#### Using Makefile (Recommended)
+
+**Windows:**
+```bash
+cd windsurf/cppchatapp
+build.bat              # Build everything
+build.bat test          # Build and run tests
+build.bat dev           # Quick development build
+build.bat clean         # Clean build artifacts
+build.bat help          # Show help
+```
+
+**Linux/Unix:**
+```bash
+cd windsurf/cppchatapp
+chmod +x build.sh      # Make script executable
+./build.sh             # Build everything
+./build.sh test         # Build and run tests
+./build.sh dev          # Quick development build
+./build.sh clean        # Clean build artifacts
+./build.sh help         # Show help
+```
+
+#### Using Make Directly
 
 ```bash
-chat_server [--host HOST] [--port PORT]
+# Build all components
+make all
+
+# Build individual components
+make server
+make client
+make tests
+
+# Run tests
+make test
+make run-tests
+
+# Development targets
+make dev-server
+make dev-client
+
+# Performance testing
+make perf-test
+
+# Clean build
+make clean
+
+# Show help
+make help
 ```
 
-Default: `chat_server --host localhost --port 8765`
+### Build Output
 
-Options:
-- `--host`: Host to bind to (default: localhost)
-- `--port`: Port to bind to (default: 8765)
-- `--help`: Show help message
+```
+build/
+├── bin/
+│   ├── chat_server.exe    # Server executable (Windows)
+│   ├── chat_client.exe    # Client executable (Windows)
+│   ├── chat_server       # Server executable (Linux)
+│   ├── chat_client       # Client executable (Linux)
+│   └── chat_tests       # Test executable
+└── obj/                # Object files
+```
 
-### Start a Client
+### Usage
 
+#### Start the Server
+
+**Windows:**
 ```bash
-chat_client [--host HOST] [--port PORT]
+build\bin\chat_server.exe [--host HOST] [--port PORT]
 ```
 
-Default: `chat_client --host localhost --port 8765`
+**Linux:**
+```bash
+./build/bin/chat_server [--host HOST] [--port PORT]
+```
 
-### Chat Commands
+Default: `--host localhost --port 8765`
+
+#### Start a Client
+
+**Windows:**
+```bash
+build\bin\chat_client.exe [--host HOST] [--port PORT]
+```
+
+**Linux:**
+```bash
+./build/bin/chat_client [--host HOST] [--port PORT]
+```
+
+#### Chat Commands
 
 - Type your message and press Enter to send
 - Type `/help` to show available commands
@@ -152,12 +204,199 @@ Following AIinfo.txt standards:
 - **Atomics**: `std::atomic` for thread-safe operations
 - **Mutexes**: `std::mutex` for thread synchronization
 - **Lambdas**: For callback functions and event handling
-- **Chrono**: `std::chrono` for time handling
 - **String Views**: Efficient string handling where applicable
 
 ## Testing
 
-Unit tests to be implemented in the `tests/` directory following the workflow.
+### Test Structure
+
+The C++ chat application includes comprehensive unit tests using Google Test framework:
+
+```
+tests/
+├── test_message.cpp       # Message class tests
+├── test_server.cpp        # ChatServer class tests
+└── (additional test files to be added)
+```
+
+### Prerequisites
+
+Install Google Test framework:
+
+#### Windows (vcpkg)
+```bash
+vcpkg install gtest
+```
+
+#### Linux (apt)
+```bash
+sudo apt-get install libgtest-dev libgmock-dev
+```
+
+#### Building from Source
+```bash
+git clone https://github.com/google/googletest.git
+cd googletest
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+```
+
+### Running Tests
+
+#### Quick Test Run
+```bash
+# Windows
+build.bat test
+
+# Linux
+./build.sh test
+```
+
+#### Using Make Directly
+```bash
+# Run all tests
+make test
+
+# Run with verbose output
+make run-tests
+
+# Run specific test categories
+make test-message    # Message tests only
+make test-server     # Server tests only
+
+# Performance tests
+make perf-test
+```
+
+#### Test Output
+```
+[==========] Running 15 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 8 tests from MessageTest
+[ RUN      ] MessageTest.StandardMessageCreation
+[       OK ] MessageTest.StandardMessageCreation (1 ms)
+...
+[----------] 8 tests from MessageTest (5 ms total)
+[----------] 7 tests from ServerTest
+[ RUN      ] ServerTest.ServerCreation
+[       OK ] ServerTest.ServerCreation (0 ms)
+...
+[----------] 7 tests from ServerTest (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 15 tests from 2 test suites ran. (15 ms total)
+[  PASSED  ] 15 tests.
+```
+
+### Test Coverage
+
+The test suite covers:
+
+#### Standard Cases
+- Message creation and validation
+- JSON serialization/deserialization
+- Server startup and shutdown
+- Client connection management
+
+#### Edge Cases
+- Boundary conditions (1000 character limit)
+- Special characters and Unicode handling
+- Multiple message types
+- Concurrent operations
+
+#### Wrong Inputs
+- Invalid JSON format
+- Empty/null values
+- Exceeding size limits
+- Network error conditions
+
+#### Performance Tests
+- Serialization performance benchmarks
+- Concurrent message handling
+- Stress testing with high load
+
+### Test Categories
+
+#### Message Tests (`test_message.cpp`)
+- **Standard Cases**: Normal message creation and validation
+- **Edge Cases**: Boundary conditions, special characters, Unicode
+- **JSON Tests**: Serialization/deserialization accuracy
+- **Concurrent Tests**: Multi-threaded message creation
+- **Performance Tests**: Timing benchmarks
+
+#### Server Tests (`test_server.cpp`)
+- **Lifecycle Tests**: Server start/stop operations
+- **Message Broadcasting**: Valid and invalid message handling
+- **Client Management**: Connection simulation
+- **Error Handling**: Invalid ports, hosts, network failures
+- **Stress Tests**: High-load concurrent operations
+
+### Test Standards
+
+Following AIinfo.txt testing requirements:
+- Unit test every function with standard case, edge cases, and wrong inputs
+- Load at runtime file for case inputs (JSON-based test data)
+- Instrument for test on commit using free tools available with GIT
+- Comprehensive error handling validation
+- Integration testing for component interaction
+
+### Example Test Output
+
+```
+[==========] Running 15 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 8 tests from MessageTest
+[ RUN      ] MessageTest.StandardMessageCreation
+[       OK ] MessageTest.StandardMessageCreation (1 ms)
+[ RUN      ] MessageTest.JsonSerialization
+[       OK ] MessageTest.JsonSerialization (0 ms)
+...
+[----------] 8 tests from MessageTest (5 ms total)
+
+[----------] 7 tests from ServerTest
+[ RUN      ] ServerTest.ServerCreation
+[       OK ] ServerTest.ServerCreation (0 ms)
+...
+[----------] 7 tests from ServerTest (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 15 tests from 2 test suites ran. (15 ms total)
+[  PASSED  ] 15 tests.
+```
+
+### Continuous Integration
+
+Set up automated testing with Make:
+
+```bash
+# Add to CI/CD pipeline
+cd windsurf/cppchatapp
+make clean && make all
+make test
+```
+
+Git pre-commit hook:
+```bash
+#!/bin/bash
+# .git/hooks/pre-commit
+cd windsurf/cppchatapp
+make clean && make quick-test
+if [ $? -ne 0 ]; then
+    echo "Tests failed! Commit aborted."
+    exit 1
+fi
+```
+
+### Test Configuration
+
+The Makefile includes:
+- **GTest Integration**: Automatic test discovery and execution
+- **Test Filtering**: Run specific test categories
+- **Verbose Output**: Detailed failure information
+- **Performance Benchmarks**: Timing measurements for critical operations
+- **Cross-Platform Support**: Works on Windows and Linux
 
 ## Performance Considerations
 

@@ -189,7 +189,6 @@ bool SocketConnectionManager::is_connection_active(const std::string& connection
 }
 
 std::vector<std::string> SocketConnectionManager::get_active_connections() const {
-    std::lock_guard<std::mutex> lock(connections_mutex_);
     std::vector<std::string> connections;
     connections.reserve(client_sockets_.size());
     
@@ -284,8 +283,6 @@ bool ChatServer::broadcast_message(const Message& message) {
 
 std::vector<std::string> ChatServer::get_connected_clients() const {
     std::vector<std::string> clients;
-    
-    std::lock_guard<std::mutex> lock(clients_mutex_);
     clients.reserve(connection_to_client_map_.size());
     
     for (const auto& [conn_id, client_id] : connection_to_client_map_) {

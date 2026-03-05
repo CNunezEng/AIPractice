@@ -126,7 +126,6 @@ bool ChatClient::is_connected() const {
 }
 
 std::string ChatClient::get_connection_status() const {
-    std::lock_guard<std::mutex> lock(status_mutex_);
     return connection_status_;
 }
 

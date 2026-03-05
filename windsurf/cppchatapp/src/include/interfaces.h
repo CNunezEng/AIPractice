@@ -41,8 +41,8 @@ struct Message {
      */
     Message(const std::string& sender, const std::string& content, 
             const std::string& type = "text")
-        : sender_id(sender), content(content), message_type(type)
-        , timestamp(std::chrono::system_clock::now()) {}
+        : sender_id(sender), content(content), timestamp(std::chrono::system_clock::now())
+        , message_type(type) {}
     
     /**
      * @brief Convert message to JSON string

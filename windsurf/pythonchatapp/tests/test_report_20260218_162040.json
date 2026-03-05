@@ -1,0 +1,36 @@
+{
+  "test_run": {
+    "start_time": "2026-02-18T16:20:38.555198",
+    "end_time": "2026-02-18T16:20:40.119275",
+    "duration_seconds": 1.564077,
+    "total_tests": 15,
+    "passed": 2,
+    "failures": 1,
+    "errors": 12,
+    "success_rate": 13.333333333333334
+  },
+  "module_results": {
+    "test_interfaces": {
+      "tests_run": 13,
+      "failures": 1,
+      "errors": 10,
+      "success_rate": 15.384615384615385
+    },
+    "test_server": {
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 1,
+      "success_rate": 0.0
+    },
+    "test_client": {
+      "tests_run": 1,
+      "failures": 0,
+      "errors": 1,
+      "success_rate": 0.0
+    }
+  },
+  "environment": {
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "win32"
+  }
+}

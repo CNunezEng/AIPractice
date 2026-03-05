@@ -1,0 +1,138 @@
+{
+  "standard_cases": [
+    {
+      "sender_id": "user1",
+      "content": "Hello world!",
+      "message_type": "text",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "alice",
+      "content": "How is everyone today?",
+      "message_type": "text",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "bob",
+      "content": "Great! Working on chat applications.",
+      "message_type": "text",
+      "expected_valid": true
+    }
+  ],
+  "edge_cases": [
+    {
+      "sender_id": "user_empty",
+      "content": "Message with empty sender",
+      "message_type": "text",
+      "expected_valid": false
+    },
+    {
+      "sender_id": "user_with_empty_content",
+      "content": "",
+      "message_type": "text",
+      "expected_valid": false
+    },
+    {
+      "sender_id": "user_with_max_content",
+      "content": "This is exactly 1000 characters long message that should be valid according to our validation rules. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. End of message.",
+      "message_type": "text",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "user_with_special_chars",
+      "content": "Special characters: !@#$%^&*()_+-=[]{}|;':\",./<>?",
+      "message_type": "text",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "user_with_unicode",
+      "content": "Unicode characters: ñáéíóú 中文 العربية русский 日本語 한국어",
+      "message_type": "text",
+      "expected_valid": true
+    }
+  ],
+  "wrong_inputs": [
+    {
+      "sender_id": "user_with_too_long_content",
+      "content": "This message is 1001 characters long and should be invalid according to our validation rules. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. This makes it over 1000 characters.",
+      "message_type": "text",
+      "expected_valid": false
+    },
+    {
+      "sender_id": "",
+      "content": "Empty sender ID",
+      "message_type": "text",
+      "expected_valid": false
+    },
+    {
+      "sender_id": "user",
+      "content": "",
+      "message_type": "text",
+      "expected_valid": false
+    },
+    {
+      "sender_id": null,
+      "content": "Null sender ID",
+      "message_type": "text",
+      "expected_valid": false
+    }
+  ],
+  "message_types": [
+    {
+      "sender_id": "user1",
+      "content": "Regular text message",
+      "message_type": "text",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "user2",
+      "content": "Image message description",
+      "message_type": "image",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "user3",
+      "content": "File message description",
+      "message_type": "file",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "server",
+      "content": "System notification",
+      "message_type": "system",
+      "expected_valid": true
+    },
+    {
+      "sender_id": "server",
+      "content": "Error message",
+      "message_type": "error",
+      "expected_valid": true
+    }
+  ],
+  "concurrent_test_cases": [
+    {
+      "thread_id": 1,
+      "messages": [
+        {"sender_id": "thread1_user1", "content": "Message 1 from thread 1"},
+        {"sender_id": "thread1_user2", "content": "Message 2 from thread 1"},
+        {"sender_id": "thread1_user3", "content": "Message 3 from thread 1"}
+      ]
+    },
+    {
+      "thread_id": 2,
+      "messages": [
+        {"sender_id": "thread2_user1", "content": "Message 1 from thread 2"},
+        {"sender_id": "thread2_user2", "content": "Message 2 from thread 2"},
+        {"sender_id": "thread2_user3", "content": "Message 3 from thread 2"}
+      ]
+    },
+    {
+      "thread_id": 3,
+      "messages": [
+        {"sender_id": "thread3_user1", "content": "Message 1 from thread 3"},
+        {"sender_id": "thread3_user2", "content": "Message 2 from thread 3"},
+        {"sender_id": "thread3_user3", "content": "Message 3 from thread 3"}
+      ]
+    }
+  ]
+}

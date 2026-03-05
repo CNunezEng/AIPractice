@@ -18,8 +18,13 @@ class Message:
     """
     sender_id: str
     content: str
-    timestamp: datetime
+    timestamp: datetime = None
     message_type: str = "text"  # Can be extended for different message types
+    
+    def __post_init__(self):
+        """Set default timestamp if not provided."""
+        if self.timestamp is None:
+            self.timestamp = datetime.now()
     
     def to_dict(self) -> dict:
         """Convert message to dictionary for JSON serialization."""
@@ -48,6 +53,10 @@ class Message:
     def from_json(cls, json_str: str) -> 'Message':
         """Create message from JSON string."""
         return cls.from_dict(json.loads(json_str))
+    
+    def is_valid(self) -> bool:
+        """Validate message format and content."""
+        return bool(self.sender_id) and bool(self.content) and len(self.content) <= 1000
 
 
 class IChatServer(ABC):

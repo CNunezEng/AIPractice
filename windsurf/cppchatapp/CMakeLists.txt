@@ -21,6 +21,9 @@ endif()
 # Include directories
 include_directories(src/include)
 
+# Find GTest
+find_package(GTest REQUIRED)
+
 # Source files
 set(SERVER_SOURCES
     src/server/chat_server.cpp
@@ -32,20 +35,32 @@ set(CLIENT_SOURCES
     src/client/main.cpp
 )
 
+set(TEST_SOURCES
+    tests/test_message.cpp
+    tests/test_server.cpp
+)
+
 # Create server executable
 add_executable(chat_server ${SERVER_SOURCES})
 
 # Create client executable
 add_executable(chat_client ${CLIENT_SOURCES})
 
+# Create test executable
+add_executable(chat_tests ${TEST_SOURCES})
+
 # Platform-specific linking
 if(WIN32)
     target_link_libraries(chat_server ws2_32)
     target_link_libraries(chat_client ws2_32)
+    target_link_libraries(chat_tests ws2_32)
 endif()
 
+# Link GTest for tests
+target_link_libraries(chat_tests GTest::GTest GTest::Main)
+
 # Set output directory
-set_target_properties(chat_server chat_client PROPERTIES
+set_target_properties(chat_server chat_client chat_tests PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
 
@@ -57,10 +72,26 @@ install(TARGETS chat_server chat_client
 # Custom targets for convenience
 target_compile_definitions(chat_server PRIVATE SERVER_BUILD)
 target_compile_definitions(chat_client PRIVATE CLIENT_BUILD)
+target_compile_definitions(chat_tests PRIVATE TEST_BUILD)
 
-# Add custom clean target
+# Enable testing
+enable_testing()
+
+# Add test cases
+add_test(NAME MessageTests COMMAND chat_tests --gtest_filter=MessageTest.*)
+add_test(NAME ServerTests COMMAND chat_tests --gtest_filter=ServerTest.*)
+add_test(NAME AllTests COMMAND chat_tests)
+
+# Custom clean target
 add_custom_target(clean-all
     COMMAND ${CMAKE_BUILD_TOOL} clean
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}/bin
     COMMENT "Cleaning all build artifacts"
+)
+
+# Test runner target
+add_custom_target(run-tests
+    COMMAND ${CMAKE_CTEST_COMMAND} --verbose
+    DEPENDS chat_tests
+    COMMENT "Running all tests"
 )
