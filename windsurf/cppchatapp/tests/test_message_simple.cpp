@@ -4,8 +4,8 @@
  */
 
 #define CATCH_CONFIG_MAIN
-#include "../../../../thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/catch_test_macros.hpp"
-#include "../../../../thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/catch_session.hpp"
+#include "C:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/catch_test_macros.hpp"
+#include "C:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/catch_session.hpp"
 #include "../src/include/interfaces.h"
 #include "../src/include/message_impl.h"
 #include <thread>

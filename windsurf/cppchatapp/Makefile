@@ -4,9 +4,9 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -Werror
-CXXFLAGS += -Isrc/include
-CXXFLAGS += -IC:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src
-CXXFLAGS += -IC:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/internal
+CXXFLAGS += -I"src/include"
+CXXFLAGS += -I"C:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src"
+CXXFLAGS += -I"C:/Users/pixar/OneDrive/Desktop/practice program s/Showcase/thirdPartyIncludes/catchorg-Catch2-31b1109/src/catch2/internal"
 
 # Platform-specific settings
 UNAME_S := Windows
@@ -35,7 +35,7 @@ TEST_DIR = tests
 # Source files
 SERVER_SOURCES = $(SRC_DIR)/server/chat_server.cpp $(SRC_DIR)/server/main.cpp
 CLIENT_SOURCES = $(SRC_DIR)/client/chat_client.cpp $(SRC_DIR)/client/main.cpp
-TEST_SOURCES = $(TEST_DIR)/test_runner.cpp
+TEST_SOURCES = $(TEST_DIR)/test_message_simple.cpp
 
 # Object files
 SERVER_OBJECTS = $(SERVER_SOURCES:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)

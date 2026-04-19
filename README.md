@@ -1,6 +1,20 @@
 # AIPractice
 This project will track my progress learning and experimenting with AI Coding
 
+When requesting code or documentation from AI, always include:
+
+Target language and environment: C++ on windows with Ming
+
+Expected inputs:
+.\Client source ip:port dst ip:port
+.\Server source ip:port dst ip:port
+should bring up an empty prompt and take in messages to send when you press enter
+
+Expected outputs:
+    should output the incoming messages from the opposite side immedetly
+
+Performance or memory constraints: none
+
 The Plan--------
 
 Decide on a favorite engine

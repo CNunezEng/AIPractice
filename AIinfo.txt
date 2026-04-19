@@ -23,7 +23,8 @@ Create a user input log with short summaries of effects
 
 
 Testing-----------
-always use a load at runtime file for case inputs
+Always create a way to add test cases without rebuilding the code 
+For example use an ini file with inputs and expected outputs to read in cases at runtime
 Unit test every function with standard case, edge cases, and wrong inputs
 Instrument for test on commit using free tools availible with GIT
 
