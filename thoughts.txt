@@ -2,22 +2,31 @@ Generally
 	AI seems to have issues with windows build environments
 
 Windsurf
-    	easy to use
-    	moved at appropreate increments
-    	easy and effective to correct
-    	started in python
-	Did not write the tests until asked(not the test driven development that I asked for
-	keeps making the same error in terminal
-	it debugs like someone on a time crunch, very hacky
+    	- easy to use
+    	- moved at appropreate increments
+    	- easy and effective to correct
+    	- started in python
+	- Did not write the tests until asked(not the test driven development that I asked for
+	- keeps making the same error in terminal
+	- it debugs like someone on a time crunch, very hacky
+	- got into an extremely irritating debug loop.
+	- had to be coached on the intecracies of windows commandline every single time.
+	- experiment on this subject halted
 Copilot
-	the month message restriction 
-	is extreemly limiting. 
-	I have been unable to start the test due to this restriction
-	I need to add more detail on how I expect the Testing to be formatted
-	Linking to Catch2 for a test frame was more frustraiting than it should 
-	have been I will use my solution from this agent for future ones as that 
+	- The month message restriction is extreemly limiting. 
+	- I have been unable to start the test due to this restriction.
+	- Also started with Python
+	- It is integrated with VSCode which I was already using
+	- I need to add more detail on how I expect the Testing to be formatted
+	- Linking to Catch2 for a test frame was more frustrating than it should 
+	have been, I will use my solution from this agent for future ones as that 
 	was a suggestion from me
-	It doesn't automatically use automation
-	I don't generally get a comprehensive explination of what the AI is doing
+	- It doesn't automatically use automation
+	- I don't generally get a comprehensive explination of what the AI is doing
+	- It gave me a test that failed at first which I appriciate
+	- It did a debug circle until I restarted the agent, I may use this technique moving forward.
+	- It is the first agent I have managed to finish the project with
+Codex   
+
 
                                                                                                                                                                                                                                                                                                                           
