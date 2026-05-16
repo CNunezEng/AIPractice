@@ -1,5 +1,6 @@
 Generally
 	AI seems to have issues with windows build environments
+	list of agents - windsurf, copilot, codex, grok, claude, gemini
 
 Windsurf
     	- easy to use
@@ -27,6 +28,10 @@ Copilot
 	- It did a debug circle until I restarted the agent, I may use this technique moving forward.
 	- It is the first agent I have managed to finish the project with
 Codex   
-
+	- impressively easy to work with
+	- read the files and worked through using the information given
+	- started in C++
+	- detected the minggw automatically
+	- no issues found
 
                                                                                                                                                                                                                                                                                                                           
